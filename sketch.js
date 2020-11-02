@@ -23,7 +23,7 @@ function preload(){
 function setup() {
   createCanvas(800,400);
   
-  backgr=createSprite(0,0,800,400);
+  backgr=createSprite(-200,0,800,400);
   backgr.addImage(backImage);
   backgr.scale=1.5;
   backgr.x=backgr.width/2;
@@ -32,7 +32,8 @@ function setup() {
   player = createSprite(100,340,20,50);
   player.addAnimation("Running",player_running);
   player.scale = 0.1;
-  
+  camera.x = player.x;
+  camera.y = 200;
   ground = createSprite(400,350,800,10);
   ground.velocityX=-4;
   ground.x=ground.width/2;
@@ -52,8 +53,8 @@ function draw() {
   if(ground.x<0) {
     ground.x=ground.width/2;
   }
-  if(backgr.x<100){
-    backgr.x=backgr.width/2;
+  if(backgr.x<0){
+    backgr.x=backgr.width/2-300;
   }
   
     if(FoodGroup.isTouching(player)){
@@ -91,7 +92,7 @@ function draw() {
   stroke("white");
   textSize(20);
   fill("white");
-  text("Score: "+ score, 500,50);
+  text("Score: "+ score, 100, 50);
 }
 
 function spawnFood() {
